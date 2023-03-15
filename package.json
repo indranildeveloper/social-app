@@ -1,0 +1,34 @@
+{
+  "name": "social-app",
+  "version": "1.0.0",
+  "description": "MERN Stack Fully Featured Social Media Application",
+  "main": "server/dist/server.js",
+  "repository": "https://github.com/indranildeveloper/social-app.git",
+  "author": "Indranil Halder <indranilhalder.dev@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server/dist/server.js",
+    "server": "nodemon server/dist/server.js",
+    "typescript-watch": "tsc --watch",
+    "dev:server": "concurrently \"yarn typescript-watch\" \"yarn server\""
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "express-jwt": "^8.4.1",
+    "express-validator": "^6.15.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^18.15.3",
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.21",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  }
+}
