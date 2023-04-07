@@ -3,7 +3,7 @@ import config from "../config/config";
 
 const { MONGO_URI } = config;
 
-const connectDB = async () => {
+const connectDatabase: () => Promise<void> = async (): Promise<void> => {
   try {
     const conn = await mongoose.connect(MONGO_URI);
     console.log(
@@ -15,4 +15,4 @@ const connectDB = async () => {
   }
 };
 
-export default connectDB;
+export default connectDatabase;

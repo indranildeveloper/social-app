@@ -1,13 +1,7 @@
 import dotenv from "dotenv";
+import { ConfigType } from "../interfaces/Config";
 
 dotenv.config();
-
-interface ConfigType {
-  PORT: string;
-  NODE_ENV: string;
-  MONGO_URI: string;
-  PROD_MONGO_URI: string;
-}
 
 const config: ConfigType = {
   PORT: process.env.PORT || "4000",

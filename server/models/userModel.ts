@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import { IUser } from "../interfaces/User";
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const userSchema = new Schema<IUser>(
   {
@@ -23,6 +23,9 @@ const userSchema = new Schema<IUser>(
     phoneNumber: {
       type: Number,
       required: [true, "Phone Number is required!"],
+    },
+    website: {
+      type: String,
     },
     address: {
       country: {
@@ -102,6 +105,5 @@ const userSchema = new Schema<IUser>(
   }
 );
 
-const User = mongoose.model<IUser>("User", userSchema);
-
+const User: Model<IUser> = mongoose.model<IUser>("User", userSchema);
 export default User;

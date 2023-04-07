@@ -20,6 +20,7 @@ interface IUser {
   about: string;
   password: string;
   phoneNumber: number;
+  website: string;
   address: {
     country: string;
     state: string;
