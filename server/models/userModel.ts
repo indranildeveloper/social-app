@@ -22,7 +22,6 @@ const userSchema = new Schema<IUser>(
     },
     phoneNumber: {
       type: Number,
-      required: [true, "Phone Number is required!"],
     },
     website: {
       type: String,
