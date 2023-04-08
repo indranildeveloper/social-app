@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
-import { ConfigType } from "../interfaces/Config";
+import IConfigType from "../interfaces/Config";
 
 dotenv.config();
 
-const config: ConfigType = {
+const config: IConfigType = {
   PORT: process.env.PORT || "4000",
   NODE_ENV: process.env.NODE_ENV || "development",
   MONGO_URI: process.env.MONGO_URI || "mongodb://127.0.0.1:27017/social-app",

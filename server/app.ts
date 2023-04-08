@@ -13,7 +13,7 @@ app.use(cors());
 app.use(helmet());
 
 app.get("/", (req: Request, res: Response): void => {
-  res.send('<h1>This response is from server</h1>');
+  res.send("<h1>This response is from server</h1>");
 });
 
 export default app;

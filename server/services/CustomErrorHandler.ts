@@ -12,22 +12,20 @@ class CustomErrorHandler extends Error {
   }
 
   static wrongCredentials(
-    message: string = "Username and Password do not match!"
+    message = "Username and Password do not match!"
   ): CustomErrorHandler {
     return new CustomErrorHandler(401, message);
   }
 
-  static unAuthorized(message: string = "Unauthorized!"): CustomErrorHandler {
+  static unAuthorized(message = "Unauthorized!"): CustomErrorHandler {
     return new CustomErrorHandler(401, message);
   }
 
-  static notFound(message: string = "Not Found!"): CustomErrorHandler {
+  static notFound(message = "Not Found!"): CustomErrorHandler {
     return new CustomErrorHandler(404, message);
   }
 
-  static serverError(
-    message: string = "Internal Server Error!"
-  ): CustomErrorHandler {
+  static serverError(message = "Internal Server Error!"): CustomErrorHandler {
     return new CustomErrorHandler(500, message);
   }
 }

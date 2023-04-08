@@ -9,7 +9,13 @@
   "scripts": {
     "start": "node server/dist/server.js",
     "server": "nodemon server/server.ts",
-    "server:lint": "eslint --ext .ts ./server"
+    "lint": "eslint --ext .ts,.tsx ./ --no-error-on-unmatched-pattern",
+    "lint:fix": "eslint --ext .ts,.tsx ./ --no-error-on-unmatched-pattern --fix",
+    "prettier": "prettier \"**/*.+(json|ts|tsx)\"",
+    "format:check": "npm run prettier -- --check",
+    "format:fix": "npm run prettier -- --write",
+    "types:check": "tsc --noEmit --pretty",
+    "prepare": "husky install"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

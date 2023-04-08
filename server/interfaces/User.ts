@@ -39,4 +39,4 @@ interface IUser {
   experience: Array<IExperience>;
 }
 
-export { IUser };
+export default IUser;
