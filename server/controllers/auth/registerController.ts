@@ -1,10 +1,14 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 import Joi from "joi";
 import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
+import config from "../../config/config";
 import User from "../../models/userModel";
+import RefreshToken from "../../models/refreshTokenModel";
 import CustomErrorHandler from "../../services/CustomErrorHandler";
 import JwtHandler from "../../services/JwtHandler";
+
+const { REFRESH_TOKEN_SECRET } = config;
 
 /**
  * @description   Register a user
@@ -12,7 +16,7 @@ import JwtHandler from "../../services/JwtHandler";
  * @access        Public
  */
 
-const registerController = asyncHandler(
+const registerController: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const registerSchema = Joi.object({
       name: Joi.string().min(3).max(30).label("Name").required(),
@@ -59,11 +63,23 @@ const registerController = asyncHandler(
     });
 
     if (user) {
+      const generatedAccessToken: string = JwtHandler.generateToken({
+        user: user._id.toString(),
+      });
+      const generatedRefreshToken: string = JwtHandler.generateToken(
+        { user: user._id.toString() },
+        "1y",
+        REFRESH_TOKEN_SECRET
+      );
+
+      RefreshToken.create({ token: generatedRefreshToken });
+
       res.status(201).json({
         _id: user._id,
         name: user.name,
         email: user.email,
-        token: JwtHandler.generateToken(user._id.toString()),
+        accessToken: generatedAccessToken,
+        refreshToken: generatedRefreshToken,
       });
     } else {
       return next(CustomErrorHandler.serverError("User can not be created!"));

@@ -1,4 +1,4 @@
-import { ErrorRequestHandler, Request, Response } from "express";
+import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import { ValidationError } from "joi";
 import config from "../config/config";
 import CustomErrorHandler from "../services/CustomErrorHandler";
@@ -8,7 +8,9 @@ const { DEBUG_MODE } = config;
 const errorMiddleware: ErrorRequestHandler = (
   err,
   req: Request,
-  res: Response
+  res: Response,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next: NextFunction
 ) => {
   let statusCode = 500;
   let data = {
