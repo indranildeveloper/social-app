@@ -63,6 +63,7 @@ const registerController: RequestHandler = asyncHandler(
     });
 
     if (user) {
+      // Generate Tokens
       const generatedAccessToken: string = JwtHandler.generateToken({
         user: user._id.toString(),
       });

@@ -10,6 +10,12 @@ import IJwtPayload from "../../interfaces/JwtPayload";
 
 const { REFRESH_TOKEN_SECRET } = config;
 
+/**
+ * @description   Refresh the token
+ * @route         POST /api/refresh
+ * @access        Private
+ */
+
 const refreshTokenController: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     // Validate request
