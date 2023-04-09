@@ -5,6 +5,11 @@ const { Schema } = mongoose;
 
 const refreshTokenSchema = new Schema<IRefreshToken>(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
     token: {
       type: String,
       unique: true,

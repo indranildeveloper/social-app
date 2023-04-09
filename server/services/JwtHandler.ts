@@ -1,11 +1,8 @@
 import jwt from "jsonwebtoken";
 import config from "../config/config";
+import IJwtPayload from "../interfaces/JwtPayload";
 
 const { JWT_SECRET } = config;
-
-interface IJwtPayload {
-  user: string;
-}
 
 class JwtHandler {
   static generateToken(

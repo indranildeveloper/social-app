@@ -60,7 +60,11 @@ const loginController: RequestHandler = asyncHandler(
         REFRESH_TOKEN_SECRET
       );
 
-      RefreshToken.create({ token: generatedRefreshToken });
+      await RefreshToken.create({
+        user: user._id,
+        token: generatedRefreshToken,
+      });
+
       res.status(201).json({
         _id: user._id,
         name: user.name,

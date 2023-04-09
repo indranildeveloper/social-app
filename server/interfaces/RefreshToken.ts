@@ -1,4 +1,7 @@
+import { ObjectId } from "mongoose";
+
 interface IRefreshToken {
+  user: ObjectId;
   token: string;
 }
 

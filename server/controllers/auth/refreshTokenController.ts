@@ -61,6 +61,7 @@ const refreshTokenController: RequestHandler = asyncHandler(
       const generatedAccessToken: string = JwtHandler.generateToken({
         user: user._id.toString(),
       });
+
       const generatedRefreshToken: string = JwtHandler.generateToken(
         { user: user._id.toString() },
         "1y",
@@ -68,13 +69,17 @@ const refreshTokenController: RequestHandler = asyncHandler(
       );
 
       // Create Refresh Token in database
-      await RefreshToken.create({ token: generatedRefreshToken });
+      await RefreshToken.create({
+        user: user._id,
+        token: generatedRefreshToken,
+      });
+
       res.json({
         accessToken: generatedAccessToken,
         refreshToken: generatedRefreshToken,
       });
     } catch (error) {
-      return next(new Error("Something went wrong"));
+      return next(new Error("Something went wrong!"));
     }
   }
 );
