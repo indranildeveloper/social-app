@@ -4,6 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 // Routes
 import auth from "./routes/auth";
+import user from "./routes/user";
 import errorMiddleware from "./middlewares/errorMiddleware";
 
 const app: Application = express();
@@ -18,6 +19,7 @@ app.use(errorMiddleware);
 
 // Mount Routes
 app.use("/api", auth);
+app.use("/api", user);
 
 app.get("/", (req: Request, res: Response): void => {
   res.send("<h1>This response is from server</h1>");

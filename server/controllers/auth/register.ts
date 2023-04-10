@@ -21,7 +21,6 @@ const register: RequestHandler = asyncHandler(
     const { error } = registerSchema.validate(req.body);
 
     if (error) {
-      // ! Error Message -> error.details[0].message
       return next(error);
     }
 

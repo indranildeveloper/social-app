@@ -3,7 +3,7 @@ import IProfile from "../interfaces/Profile";
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema<IProfile>(
+const profileSchema = new Schema<IProfile>(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -97,5 +97,8 @@ const userSchema = new Schema<IProfile>(
   }
 );
 
-const User: Model<IProfile> = mongoose.model<IProfile>("User", userSchema);
-export default User;
+const Profile: Model<IProfile> = mongoose.model<IProfile>(
+  "Profile",
+  profileSchema
+);
+export default Profile;
