@@ -2,7 +2,7 @@ import mongoose, { Model } from "mongoose";
 import IUser from "../interfaces/User";
 
 const { Schema } = mongoose;
-
+// TODO: Break user model to user and profile models
 const userSchema = new Schema<IUser>(
   {
     name: {

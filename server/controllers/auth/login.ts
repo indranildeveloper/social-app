@@ -3,8 +3,8 @@ import Joi from "joi";
 import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
 import config from "../../config/config";
-import User from "../../models/userModel";
-import RefreshToken from "../../models/refreshTokenModel";
+import User from "../../models/User";
+import RefreshToken from "../../models/RefreshToken";
 import CustomErrorHandler from "../../services/CustomErrorHandler";
 import JwtHandler from "../../services/JwtHandler";
 
@@ -16,7 +16,7 @@ const { REFRESH_TOKEN_SECRET } = config;
  * @access        Public
  */
 
-const loginController: RequestHandler = asyncHandler(
+const login: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     // Validate request
     const loginSchema = Joi.object({
@@ -78,4 +78,4 @@ const loginController: RequestHandler = asyncHandler(
   }
 );
 
-export default loginController;
+export default login;

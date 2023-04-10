@@ -1,9 +1,15 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
 import Joi from "joi";
 import asyncHandler from "express-async-handler";
-import RefreshToken from "../../models/refreshTokenModel";
+import RefreshToken from "../../models/RefreshToken";
 
-const logoutController: RequestHandler = asyncHandler(
+/**
+ * @description   Log out user
+ * @route         POST /api/logout
+ * @access        Private
+ */
+
+const logout: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     // Validate Request
     const userSchema = Joi.object({
@@ -26,4 +32,4 @@ const logoutController: RequestHandler = asyncHandler(
   }
 );
 
-export default logoutController;
+export default logout;
