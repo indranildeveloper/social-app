@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
-import Joi from "joi";
 import asyncHandler from "express-async-handler";
 import config from "../../config/config";
 import RefreshToken from "../../models/RefreshToken";
@@ -7,6 +6,7 @@ import User from "../../models/User";
 import CustomErrorHandler from "../../services/CustomErrorHandler";
 import JwtHandler from "../../services/JwtHandler";
 import IJwtPayload from "../../interfaces/JwtPayload";
+import refreshSchema from "../../validators/refreshSchema";
 
 const { REFRESH_TOKEN_SECRET } = config;
 
@@ -18,11 +18,6 @@ const { REFRESH_TOKEN_SECRET } = config;
 
 const refresh: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    // Validate request
-    const refreshSchema = Joi.object({
-      refreshToken: Joi.string().required(),
-    });
-
     const { error } = refreshSchema.validate(req.body);
 
     if (error) {

@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
-import Joi from "joi";
 import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
 import config from "../../config/config";
@@ -7,6 +6,7 @@ import User from "../../models/User";
 import RefreshToken from "../../models/RefreshToken";
 import CustomErrorHandler from "../../services/CustomErrorHandler";
 import JwtHandler from "../../services/JwtHandler";
+import registerSchema from "../../validators/registerSchema";
 
 const { REFRESH_TOKEN_SECRET } = config;
 
@@ -18,22 +18,6 @@ const { REFRESH_TOKEN_SECRET } = config;
 
 const register: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    const registerSchema = Joi.object({
-      name: Joi.string().min(3).max(30).label("Name").required(),
-      email: Joi.string().email().label("Email").required(),
-      // Ensure that password is 8 to 64 characters long and contains a mix of upper and lower case characters,
-      // one numeric and one special character
-      password: Joi.string()
-        .min(8)
-        .pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/)
-        .message(
-          "Password should contain one uppercase letter, one lowercase letter, one number and one special character!"
-        )
-        .label("Password")
-        .required(),
-      confirmPassword: Joi.ref("password"),
-    });
-
     const { error } = registerSchema.validate(req.body);
 
     if (error) {

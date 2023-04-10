@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
-import Joi from "joi";
 import asyncHandler from "express-async-handler";
 import RefreshToken from "../../models/RefreshToken";
+import logoutSchema from "../../validators/logoutSchema";
 
 /**
  * @description   Log out user
@@ -11,12 +11,7 @@ import RefreshToken from "../../models/RefreshToken";
 
 const logout: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    // Validate Request
-    const userSchema = Joi.object({
-      userId: Joi.string().required().label("User Id"),
-    });
-
-    const { error } = userSchema.validate(req.body);
+    const { error } = logoutSchema.validate(req.body);
 
     if (error) {
       return next(error);
@@ -28,7 +23,7 @@ const logout: RequestHandler = asyncHandler(
       return next(new Error("Something went wrong in database!"));
     }
 
-    res.status(202).json({ message: "User deleted!" });
+    res.status(202).json({ message: "User logged out!" });
   }
 );
 
