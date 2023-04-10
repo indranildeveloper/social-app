@@ -3,7 +3,7 @@ import compress from "compression";
 import cors from "cors";
 import helmet from "helmet";
 // Routes
-import authRoutes from "./routes/authRoutes";
+import auth from "./routes/auth";
 import errorMiddleware from "./middlewares/errorMiddleware";
 
 const app: Application = express();
@@ -17,7 +17,7 @@ app.use(helmet());
 app.use(errorMiddleware);
 
 // Mount Routes
-app.use("/api", authRoutes);
+app.use("/api", auth);
 
 app.get("/", (req: Request, res: Response): void => {
   res.send("<h1>This response is from server</h1>");

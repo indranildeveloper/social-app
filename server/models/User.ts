@@ -2,7 +2,7 @@ import mongoose, { Model } from "mongoose";
 import IUser from "../interfaces/User";
 
 const { Schema } = mongoose;
-// TODO: Break user model to user and profile models
+
 const userSchema = new Schema<IUser>(
   {
     name: {
@@ -13,91 +13,10 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: [true, "Email is required!"],
     },
-    about: {
-      type: String,
-    },
     password: {
       type: String,
       required: [true, "Password is required!"],
     },
-    phoneNumber: {
-      type: Number,
-    },
-    website: {
-      type: String,
-    },
-    address: {
-      country: {
-        type: String,
-      },
-      state: {
-        type: String,
-      },
-      zip: {
-        type: String,
-      },
-    },
-    photo: {
-      type: String,
-    },
-    socialMediaUrls: {
-      facebook: {
-        type: String,
-      },
-      instagram: {
-        type: String,
-      },
-      github: {
-        type: String,
-      },
-      linkedIn: {
-        type: String,
-      },
-      twitter: {
-        type: String,
-      },
-      youtube: {
-        type: String,
-      },
-    },
-    education: [
-      {
-        institute: {
-          type: String,
-        },
-        from: {
-          type: String,
-        },
-        to: {
-          type: String,
-        },
-        isPresent: {
-          type: Boolean,
-        },
-        degree: {
-          type: String,
-        },
-      },
-    ],
-    experience: [
-      {
-        company: {
-          type: String,
-        },
-        from: {
-          type: String,
-        },
-        to: {
-          type: String,
-        },
-        isPresent: {
-          type: Boolean,
-        },
-        position: {
-          type: String,
-        },
-      },
-    ],
   },
   {
     timestamps: true,
