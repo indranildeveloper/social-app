@@ -5,10 +5,18 @@ import app from "./app";
 
 const { PORT } = config;
 
-// Connecting to mongodb
-// TODO: Refactor connection
-connectDatabase();
-// Listening app
-app.listen(PORT, (): void => {
-  console.log(colors.cyan(`Server is running on port: ${PORT}`));
-});
+const startServer = async () => {
+  try {
+    // Connecting to mongodb
+    await connectDatabase();
+    // Listening app
+    app.listen(PORT, (): void => {
+      console.log(colors.cyan(`Server is running on port: ${PORT}`));
+    });
+  } catch (error) {
+    console.error(`Error: ${error}`.red.underline);
+    process.exit(1);
+  }
+};
+
+startServer();
