@@ -131,3 +131,6 @@ dist
 
 # VS Code editor settings
 .vscode
+
+# Uploaded files
+/server/uploads/*

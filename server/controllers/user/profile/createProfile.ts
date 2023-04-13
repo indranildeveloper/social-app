@@ -6,7 +6,6 @@ import formidable, { Fields, Files, File } from "formidable";
 import Profile from "../../../models/Profile";
 import CustomErrorHandler from "../../../services/CustomErrorHandler";
 import IAuthUserRequest from "../../../interfaces/AuthUser";
-import generateId from "../../../utils/generateId";
 
 /**
  * @description   Create user profile
@@ -28,6 +27,15 @@ const createProfile: RequestHandler = asyncHandler(
       );
     }
 
+    const existingProfile = await Profile.findOne({ user: userId });
+    if (existingProfile) {
+      return next(
+        CustomErrorHandler.unAuthorized(
+          "You already have a profile and you can not create multiple profiles!"
+        )
+      );
+    }
+
     try {
       const form = formidable({
         keepExtensions: true,
@@ -45,7 +53,7 @@ const createProfile: RequestHandler = asyncHandler(
         const oldPath: string = file.filepath.replace(/\\/g, "/");
         const newPath: string = path.join(
           __dirname,
-          `../../../uploads/${userId}-${generateId()}.${
+          `../../../uploads/${userId}.${
             file.originalFilename?.split(".")[1]
           }`.replace(/\\/g, "/")
         );
