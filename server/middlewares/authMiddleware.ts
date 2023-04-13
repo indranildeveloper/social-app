@@ -22,7 +22,6 @@ const auth: RequestHandler = asyncHandler(
       const { user } = JwtHandler.verifyToken(token) as IJwtPayload;
       const loggedInUser = await User.findOne({ _id: user });
       req.user = loggedInUser;
-      console.log(req.user);
       next();
     } catch (error) {
       return next(CustomErrorHandler.unAuthorized());
