@@ -4,9 +4,10 @@ import createProfile from "../controllers/user/profile/createProfile";
 import getProfile from "../controllers/user/profile/getProfile";
 import updateProfile from "../controllers/user/profile/updateProfile";
 import deleteProfile from "../controllers/user/profile/deleteProfile";
-import createAddress from "../controllers/user/address/createAddress";
-import updateAddress from "../controllers/user/address/updateAddress";
+import createOrUpdateAddress from "../controllers/user/address/createOrUpdateAddress";
 import deleteAddress from "../controllers/user/address/deleteAddress";
+import createOrUpdateSocials from "../controllers/user/socials/createOrUpdateSocials";
+import deleteSocials from "../controllers/user/socials/deleteSocials";
 
 const router = express.Router();
 
@@ -20,8 +21,14 @@ router
 
 router
   .route("/user/:userId/profile/address")
-  .post(auth, createAddress)
-  .put(auth, updateAddress)
+  .post(auth, createOrUpdateAddress)
+  .put(auth, createOrUpdateAddress)
   .delete(auth, deleteAddress);
+
+router
+  .route("/user/:userId/profile/socials")
+  .post(auth, createOrUpdateSocials)
+  .put(auth, createOrUpdateSocials)
+  .delete(auth, deleteSocials);
 
 export default router;

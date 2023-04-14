@@ -91,6 +91,9 @@ const profileSchema = new Schema<IProfile>(
         },
       },
     ],
+    skills: {
+      type: [String],
+    },
   },
   {
     timestamps: true,

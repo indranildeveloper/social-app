@@ -5,12 +5,12 @@ import CustomErrorHandler from "../../../services/CustomErrorHandler";
 import IAuthUserRequest from "../../../interfaces/AuthUser";
 
 /**
- * @description   Create user profile address
- * @route         POST /api/user/:userId/profile/address
+ * @description   Delete user profile socials
+ * @route         DELETE /api/user/:userId/profile/socials
  * @access        Private
  */
 
-const createAddress: RequestHandler = asyncHandler(
+const deleteSocials: RequestHandler = asyncHandler(
   async (
     req: IAuthUserRequest,
     res: Response,
@@ -21,7 +21,7 @@ const createAddress: RequestHandler = asyncHandler(
     if (userId?.toString() !== req.params.userId) {
       return next(
         CustomErrorHandler.unAuthorized(
-          "You can not add address to this profile!"
+          "You can not add socials to this profile!"
         )
       );
     }
@@ -32,20 +32,13 @@ const createAddress: RequestHandler = asyncHandler(
 
       const profile = await Profile.findById(profileId);
 
-      const { country, state, zip } = req.body;
-
-      if (profile?.address) {
-        return next(
-          CustomErrorHandler.unAuthorized(
-            "You can not add multiple addresses to this profile!"
-          )
-        );
-      }
-
       if (profile) {
-        profile.address.country = country;
-        profile.address.state = state;
-        profile.address.zip = zip;
+        profile.socialMediaUrls.facebook = "";
+        profile.socialMediaUrls.instagram = "";
+        profile.socialMediaUrls.github = "";
+        profile.socialMediaUrls.linkedIn = "";
+        profile.socialMediaUrls.twitter = "";
+        profile.socialMediaUrls.youtube = "";
 
         profile.save();
       }
@@ -57,4 +50,4 @@ const createAddress: RequestHandler = asyncHandler(
   }
 );
 
-export default createAddress;
+export default deleteSocials;

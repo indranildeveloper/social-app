@@ -5,12 +5,12 @@ import CustomErrorHandler from "../../../services/CustomErrorHandler";
 import IAuthUserRequest from "../../../interfaces/AuthUser";
 
 /**
- * @description   Create user profile address
- * @route         POST /api/user/:userId/profile/address
+ * @description   Create or update user profile socials
+ * @route         POST or PUT /api/user/:userId/profile/socials
  * @access        Private
  */
 
-const updateAddress: RequestHandler = asyncHandler(
+const createOrUpdateSocials: RequestHandler = asyncHandler(
   async (
     req: IAuthUserRequest,
     res: Response,
@@ -21,7 +21,7 @@ const updateAddress: RequestHandler = asyncHandler(
     if (userId?.toString() !== req.params.userId) {
       return next(
         CustomErrorHandler.unAuthorized(
-          "You can not add address to this profile!"
+          "You can not add socials to this profile!"
         )
       );
     }
@@ -32,12 +32,16 @@ const updateAddress: RequestHandler = asyncHandler(
 
       const profile = await Profile.findById(profileId);
 
-      const { country, state, zip } = req.body;
+      const { facebook, instagram, github, linkedIn, twitter, youtube } =
+        req.body;
 
       if (profile) {
-        profile.address.country = country;
-        profile.address.state = state;
-        profile.address.zip = zip;
+        profile.socialMediaUrls.facebook = facebook;
+        profile.socialMediaUrls.instagram = instagram;
+        profile.socialMediaUrls.github = github;
+        profile.socialMediaUrls.linkedIn = linkedIn;
+        profile.socialMediaUrls.twitter = twitter;
+        profile.socialMediaUrls.youtube = youtube;
 
         profile.save();
       }
@@ -49,4 +53,4 @@ const updateAddress: RequestHandler = asyncHandler(
   }
 );
 
-export default updateAddress;
+export default createOrUpdateSocials;

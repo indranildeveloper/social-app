@@ -37,6 +37,7 @@ interface IProfile {
   };
   education: Array<IEducation>;
   experience: Array<IExperience>;
+  skills: Array<string>;
 }
 
 export default IProfile;
