@@ -1,19 +1,23 @@
 import { ObjectId } from "mongoose";
 
 interface IEducation {
+  id: string;
   institute: string;
   from: string;
   to: string;
   isPresent: boolean;
   degree: string;
+  description: string;
 }
 
 interface IExperience {
+  id: string;
   company: string;
   from: string;
   to: string;
   isPresent: boolean;
   position: string;
+  description: string;
 }
 
 interface IProfile {

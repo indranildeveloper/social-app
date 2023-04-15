@@ -25,12 +25,15 @@ const profileSchema = new Schema<IProfile>(
     address: {
       country: {
         type: String,
+        required: true,
       },
       state: {
         type: String,
+        required: true,
       },
       zip: {
         type: String,
+        required: true,
       },
     },
     socialMediaUrls: {
@@ -55,44 +58,68 @@ const profileSchema = new Schema<IProfile>(
     },
     education: [
       {
+        id: {
+          type: String,
+          required: true,
+        },
         institute: {
           type: String,
+          required: true,
         },
         from: {
           type: String,
+          required: true,
         },
         to: {
           type: String,
         },
         isPresent: {
           type: Boolean,
+          default: false,
         },
         degree: {
+          type: String,
+          required: true,
+        },
+        description: {
           type: String,
         },
       },
     ],
     experience: [
       {
+        id: {
+          type: String,
+          required: true,
+        },
         company: {
           type: String,
+          required: true,
         },
         from: {
           type: String,
+          required: true,
         },
         to: {
           type: String,
         },
         isPresent: {
           type: Boolean,
+          default: false,
         },
         position: {
           type: String,
+          required: true,
+        },
+        description: {
+          type: String,
+          required: true,
         },
       },
     ],
     skills: {
       type: [String],
+      required: true,
     },
   },
   {
