@@ -43,7 +43,7 @@ const createOrUpdateSocials: RequestHandler = asyncHandler(
         profile.socialMediaUrls.twitter = twitter;
         profile.socialMediaUrls.youtube = youtube;
 
-        profile.save();
+        await profile.save();
       }
 
       res.status(200).json(profile);

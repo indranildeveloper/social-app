@@ -134,3 +134,5 @@ dist
 
 # Uploaded files
 /server/uploads/*
+# TODO Files
+todo.md

@@ -37,7 +37,7 @@ const deleteAddress: RequestHandler = asyncHandler(
         profile.address.state = "";
         profile.address.zip = "";
 
-        profile.save();
+        await profile.save();
       }
 
       res.status(200).json(profile);

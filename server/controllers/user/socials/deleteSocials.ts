@@ -40,7 +40,7 @@ const deleteSocials: RequestHandler = asyncHandler(
         profile.socialMediaUrls.twitter = "";
         profile.socialMediaUrls.youtube = "";
 
-        profile.save();
+        await profile.save();
       }
 
       res.status(200).json(profile);

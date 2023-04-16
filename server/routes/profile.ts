@@ -8,6 +8,10 @@ import createOrUpdateAddress from "../controllers/user/address/createOrUpdateAdd
 import deleteAddress from "../controllers/user/address/deleteAddress";
 import createOrUpdateSocials from "../controllers/user/socials/createOrUpdateSocials";
 import deleteSocials from "../controllers/user/socials/deleteSocials";
+import createEducation from "../controllers/user/education/createEducation";
+import deleteEducation from "../controllers/user/education/deleteEducation";
+import createExperience from "../controllers/user/experience/createExperience";
+import deleteExperience from "../controllers/user/experience/deleteExperience";
 
 const router = express.Router();
 
@@ -30,5 +34,15 @@ router
   .post(auth, createOrUpdateSocials)
   .put(auth, createOrUpdateSocials)
   .delete(auth, deleteSocials);
+
+router.route("/user/:userId/profile/education").post(auth, createEducation);
+router
+  .route("/user/:userId/profile/education/:eduId")
+  .delete(auth, deleteEducation);
+
+router.route("/user/:userId/profile/experience").post(auth, createExperience);
+router
+  .route("/user/:userId/profile/experience/:expId")
+  .delete(auth, deleteExperience);
 
 export default router;

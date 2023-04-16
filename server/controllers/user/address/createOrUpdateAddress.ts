@@ -39,7 +39,7 @@ const createOrUpdateAddress: RequestHandler = asyncHandler(
         profile.address.state = state;
         profile.address.zip = zip;
 
-        profile.save();
+        await profile.save();
       }
 
       res.status(200).json(profile);
