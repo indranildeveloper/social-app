@@ -25,15 +25,12 @@ const profileSchema = new Schema<IProfile>(
     address: {
       country: {
         type: String,
-        required: true,
       },
       state: {
         type: String,
-        required: true,
       },
       zip: {
         type: String,
-        required: true,
       },
     },
     socialMediaUrls: {

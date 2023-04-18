@@ -6,6 +6,7 @@ import helmet from "helmet";
 import auth from "./routes/auth";
 import user from "./routes/user";
 import profile from "./routes/profile";
+import post from "./routes/post";
 import errorMiddleware from "./middlewares/errorMiddleware";
 
 const app: Application = express();
@@ -22,6 +23,7 @@ app.use(errorMiddleware);
 app.use("/api", auth);
 app.use("/api", user);
 app.use("/api", profile);
+app.use("/api", post);
 
 app.get("/", (req: Request, res: Response): void => {
   res.send("<h1>This response is from server</h1>");

@@ -6,7 +6,6 @@ import formidable, { Fields, Files, File } from "formidable";
 import Profile from "../../../models/Profile";
 import CustomErrorHandler from "../../../services/CustomErrorHandler";
 import IAuthUserRequest from "../../../interfaces/AuthUser";
-import profileSchema from "../../../validators/profileSchema";
 
 /**
  * @description   Update user profile
@@ -20,12 +19,6 @@ const updateProfile: RequestHandler = asyncHandler(
     res: Response,
     next: NextFunction
   ): Promise<void> => {
-    const { error } = profileSchema.validate(req.body);
-
-    if (error) {
-      return next(error);
-    }
-
     const userId = req.user?._id;
 
     if (userId?.toString() !== req.params.userId) {
@@ -51,7 +44,7 @@ const updateProfile: RequestHandler = asyncHandler(
         const oldPath: string = file.filepath.replace(/\\/g, "/");
         const newPath: string = path.join(
           __dirname,
-          `../../../uploads/${userId}.${
+          `../../../uploads/profile/${userId}.${
             file.originalFilename?.split(".")[1]
           }`.replace(/\\/g, "/")
         );
@@ -79,34 +72,35 @@ const updateProfile: RequestHandler = asyncHandler(
         });
 
         // Create the profile
-        const updateProfile: () => Promise<void> = async (): Promise<void> => {
-          const { about, phoneNumber, website } = fields;
+        const updateUserProfile: () => Promise<void> =
+          async (): Promise<void> => {
+            const { about, phoneNumber, website } = fields;
 
-          const userProfile = await Profile.findOne({ user: userId });
-          const profileId = userProfile?._id;
+            const userProfile = await Profile.findOne({ user: userId });
+            const profileId = userProfile?._id;
 
-          const profile = await Profile.findByIdAndUpdate(
-            {
-              _id: profileId,
-            },
-            {
-              $set: {
-                user: userId,
-                about,
-                phoneNumber,
-                website,
-                photo: newPath.replace(/\\/g, "/"),
+            const profile = await Profile.findByIdAndUpdate(
+              {
+                _id: profileId,
               },
-            },
-            {
-              new: true,
-            }
-          );
+              {
+                $set: {
+                  user: userId,
+                  about,
+                  phoneNumber,
+                  website,
+                  photo: newPath.replace(/\\/g, "/"),
+                },
+              },
+              {
+                new: true,
+              }
+            );
 
-          res.status(202).json(profile);
-        };
+            res.status(202).json(profile);
+          };
 
-        updateProfile();
+        updateUserProfile();
       });
     } catch (error) {
       return next(CustomErrorHandler.serverError("Internal Server Error!"));

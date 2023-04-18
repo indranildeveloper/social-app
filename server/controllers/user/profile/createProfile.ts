@@ -6,7 +6,6 @@ import formidable, { Fields, Files, File } from "formidable";
 import Profile from "../../../models/Profile";
 import CustomErrorHandler from "../../../services/CustomErrorHandler";
 import IAuthUserRequest from "../../../interfaces/AuthUser";
-import profileSchema from "../../../validators/profileSchema";
 
 /**
  * @description   Create user profile
@@ -20,12 +19,6 @@ const createProfile: RequestHandler = asyncHandler(
     res: Response,
     next: NextFunction
   ): Promise<void> => {
-    const { error } = profileSchema.validate(req.body);
-
-    if (error) {
-      return next(error);
-    }
-
     const userId = req.user?._id;
 
     if (userId?.toString() !== req.params.userId) {
@@ -88,21 +81,22 @@ const createProfile: RequestHandler = asyncHandler(
         });
 
         // Create the profile
-        const createProfile: () => Promise<void> = async (): Promise<void> => {
-          const { about, phoneNumber, website } = fields;
+        const createUserProfile: () => Promise<void> =
+          async (): Promise<void> => {
+            const { about, phoneNumber, website } = fields;
 
-          const profile = await Profile.create({
-            user: userId,
-            about,
-            phoneNumber,
-            website,
-            photo: newPath.replace(/\\/g, "/"),
-          });
+            const profile = await Profile.create({
+              user: userId,
+              about,
+              phoneNumber,
+              website,
+              photo: newPath.replace(/\\/g, "/"),
+            });
 
-          res.status(201).json(profile);
-        };
+            res.status(201).json(profile);
+          };
 
-        createProfile();
+        createUserProfile();
       });
     } catch (error) {
       return next(CustomErrorHandler.serverError("Internal Server Error!"));
