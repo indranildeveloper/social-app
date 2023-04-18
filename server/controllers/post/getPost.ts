@@ -5,7 +5,7 @@ import CustomErrorHandler from "../../services/CustomErrorHandler";
 
 /**
  * @description   GET user post
- * @route         GET /api/user/:userId/post/:postId
+ * @route         GET /api/post/:postId
  * @access        Private
  */
 
