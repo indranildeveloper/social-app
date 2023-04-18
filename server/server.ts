@@ -5,7 +5,7 @@ import app from "./app";
 
 const { PORT } = config;
 
-const startServer = async () => {
+const startServer: () => Promise<void> = async (): Promise<void> => {
   try {
     // Connecting to mongodb
     await connectDatabase();

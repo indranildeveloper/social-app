@@ -4,6 +4,7 @@ import Profile from "../../../models/Profile";
 import CustomErrorHandler from "../../../services/CustomErrorHandler";
 import IAuthUserRequest from "../../../interfaces/AuthUser";
 import generateId from "../../../utils/generateId";
+import educationSchema from "../../../validators/educationSchema";
 
 /**
  * @description   Create user profile education
@@ -17,6 +18,12 @@ const createEducation: RequestHandler = asyncHandler(
     res: Response,
     next: NextFunction
   ): Promise<void> => {
+    const { error } = educationSchema.validate(req.body);
+
+    if (error) {
+      return next(error);
+    }
+
     const userId = req.user?._id;
 
     if (userId?.toString() !== req.params.userId) {

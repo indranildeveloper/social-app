@@ -6,6 +6,7 @@ import formidable, { Fields, Files, File } from "formidable";
 import Profile from "../../../models/Profile";
 import CustomErrorHandler from "../../../services/CustomErrorHandler";
 import IAuthUserRequest from "../../../interfaces/AuthUser";
+import profileSchema from "../../../validators/profileSchema";
 
 /**
  * @description   Create user profile
@@ -19,6 +20,12 @@ const createProfile: RequestHandler = asyncHandler(
     res: Response,
     next: NextFunction
   ): Promise<void> => {
+    const { error } = profileSchema.validate(req.body);
+
+    if (error) {
+      return next(error);
+    }
+
     const userId = req.user?._id;
 
     if (userId?.toString() !== req.params.userId) {
@@ -53,7 +60,7 @@ const createProfile: RequestHandler = asyncHandler(
         const oldPath: string = file.filepath.replace(/\\/g, "/");
         const newPath: string = path.join(
           __dirname,
-          `../../../uploads/${userId}.${
+          `../../../uploads/profile/${userId}.${
             file.originalFilename?.split(".")[1]
           }`.replace(/\\/g, "/")
         );

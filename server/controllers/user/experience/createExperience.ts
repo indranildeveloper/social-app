@@ -4,6 +4,7 @@ import Profile from "../../../models/Profile";
 import CustomErrorHandler from "../../../services/CustomErrorHandler";
 import IAuthUserRequest from "../../../interfaces/AuthUser";
 import generateId from "../../../utils/generateId";
+import experienceSchema from "../../../validators/experienceSchema";
 
 /**
  * @description   Create user profile experience
@@ -17,6 +18,12 @@ const createExperience: RequestHandler = asyncHandler(
     res: Response,
     next: NextFunction
   ): Promise<void> => {
+    const { error } = experienceSchema.validate(req.body);
+
+    if (error) {
+      return next(error);
+    }
+
     const userId = req.user?._id;
 
     if (userId?.toString() !== req.params.userId) {

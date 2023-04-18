@@ -3,6 +3,7 @@ import asyncHandler from "express-async-handler";
 import Profile from "../../../models/Profile";
 import CustomErrorHandler from "../../../services/CustomErrorHandler";
 import IAuthUserRequest from "../../../interfaces/AuthUser";
+import addressSchema from "../../../validators/addressSchema";
 
 /**
  * @description   Create or update user profile address
@@ -16,6 +17,12 @@ const createOrUpdateAddress: RequestHandler = asyncHandler(
     res: Response,
     next: NextFunction
   ): Promise<void> => {
+    const { error } = addressSchema.validate(req.body);
+
+    if (error) {
+      return next(error);
+    }
+
     const userId = req.user?._id;
 
     if (userId?.toString() !== req.params.userId) {

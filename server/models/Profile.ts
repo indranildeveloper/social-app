@@ -83,6 +83,7 @@ const profileSchema = new Schema<IProfile>(
         },
         description: {
           type: String,
+          required: true,
         },
       },
     ],
@@ -117,10 +118,10 @@ const profileSchema = new Schema<IProfile>(
         },
       },
     ],
-    skills: {
-      type: [String],
-      required: true,
-    },
+    // skills: {
+    //   type: [String],
+    //   required: true,
+    // },
   },
   {
     timestamps: true,
