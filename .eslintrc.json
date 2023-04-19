@@ -14,7 +14,8 @@
     "plugin:jsx-a11y/recommended",
     "airbnb",
     "airbnb/hooks",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:react/jsx-runtime"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
@@ -43,8 +44,13 @@
     "@typescript-eslint/no-unused-vars": "error",
     "import/no-cycle": "error",
     "import/extensions": "off",
-    "linebreak-style": ["error", "windows"],
+    // "linebreak-style": ["error", "windows"],
     "node/no-unsupported-features/es-syntax": ["off"],
-    "node/no-missing-import": ["off"]
+    "node/no-missing-import": ["off"],
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "arrow-function" }
+    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }]
   }
 }

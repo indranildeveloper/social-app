@@ -1,5 +1,5 @@
 {
-  "name": "social-app",
+  "name": "social-app-server",
   "version": "1.0.0",
   "description": "MERN Stack Fully Featured Social Media Application",
   "main": "server/dist/server.js",
@@ -15,7 +15,9 @@
     "format:check": "npm run prettier -- --check",
     "format:fix": "npm run prettier -- --write",
     "types:check": "tsc --noEmit --pretty",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "client-install": "yarn --cwd ./client",
+    "client": "yarn --cwd ./client dev"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -49,6 +51,7 @@
     "eslint": "8.2.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-next": "^13.3.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
     "eslint-import-resolver-typescript": "^3.5.5",
