@@ -11,7 +11,7 @@
     "server": "nodemon server/server.ts",
     "lint": "eslint --ext .ts,.tsx ./ --no-error-on-unmatched-pattern",
     "lint:fix": "eslint --ext .ts,.tsx ./ --no-error-on-unmatched-pattern --fix",
-    "prettier": "prettier \"**/*.+(json|ts|tsx)\"",
+    "prettier": "prettier \"**/*.+(json|js|jsx|ts|tsx)\"",
     "format:check": "npm run prettier -- --check",
     "format:fix": "npm run prettier -- --write",
     "types:check": "tsc --noEmit --pretty",
