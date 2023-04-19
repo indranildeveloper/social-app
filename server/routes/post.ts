@@ -7,6 +7,8 @@ import updatePost from "../controllers/posts/post/updatePost";
 import deletePost from "../controllers/posts/post/deletePost";
 import createLike from "../controllers/posts/like/createLike";
 import deleteLike from "../controllers/posts/like/deleteLike";
+import createComment from "../controllers/posts/comment/createComment";
+import deleteComment from "../controllers/posts/comment/deleteComment";
 
 const router = express.Router();
 
@@ -19,7 +21,9 @@ router
   .put(auth, updatePost)
   .delete(auth, deletePost);
 
-router.route("/post/:postId/like").post(auth, createLike);
-router.route("/post/:postId/unlike").post(auth, deleteLike);
+router.route("/post/:postId/like").put(auth, createLike);
+router.route("/post/:postId/unlike").put(auth, deleteLike);
+router.route("/post/:postId/comment").put(auth, createComment);
+router.route("/post/:postId/uncomment").put(auth, deleteComment);
 
 export default router;

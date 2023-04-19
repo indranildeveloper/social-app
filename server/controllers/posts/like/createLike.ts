@@ -5,13 +5,12 @@ import CustomErrorHandler from "../../../services/CustomErrorHandler";
 
 /**
  * @description   Like user post
- * @route         Post /api/post/:postId/like
+ * @route         PUT /api/post/:postId/like
  * @access        Private
  */
 
 const createLike: RequestHandler = asyncHandler(
-  async (req: Request, res: Response, next: NextFunction) => {
-    // Get posts
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const post = await Post.findById({ _id: req.params.postId });
 

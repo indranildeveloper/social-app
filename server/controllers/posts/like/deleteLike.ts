@@ -5,13 +5,12 @@ import CustomErrorHandler from "../../../services/CustomErrorHandler";
 
 /**
  * @description   Unlike user post
- * @route         Post /api/post/:postId/unlike
+ * @route         PUT /api/post/:postId/unlike
  * @access        Private
  */
 
 const deleteLike: RequestHandler = asyncHandler(
-  async (req: Request, res: Response, next: NextFunction) => {
-    // Get posts
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const post = await Post.findByIdAndUpdate(
         {
