@@ -3,10 +3,10 @@ import Jimp from "jimp";
 import { Response, RequestHandler, NextFunction } from "express";
 import asyncHandler from "express-async-handler";
 import formidable, { Fields, Files, File } from "formidable";
-import Post from "../../models/Post";
-import CustomErrorHandler from "../../services/CustomErrorHandler";
-import IAuthUserRequest from "../../interfaces/AuthUser";
-import generateId from "../../utils/generateId";
+import Post from "../../../models/Post";
+import CustomErrorHandler from "../../../services/CustomErrorHandler";
+import IAuthUserRequest from "../../../interfaces/AuthUser";
+import generateId from "../../../utils/generateId";
 
 /**
  * @description   Create user post

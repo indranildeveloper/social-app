@@ -1,12 +1,12 @@
 import express from "express";
 import auth from "../middlewares/authMiddleware";
-import getPost from "../controllers/post/getPost";
-import getPosts from "../controllers/post/getPosts";
-import createPost from "../controllers/post/createPost";
-import updatePost from "../controllers/post/updatePost";
-import deletePost from "../controllers/post/deletePost";
-import createLike from "../controllers/post/like/createLike";
-import deleteLike from "../controllers/post/like/deleteLike";
+import getPost from "../controllers/posts/post/getPost";
+import getPosts from "../controllers/posts/post/getPosts";
+import createPost from "../controllers/posts/post/createPost";
+import updatePost from "../controllers/posts/post/updatePost";
+import deletePost from "../controllers/posts/post/deletePost";
+import createLike from "../controllers/posts/like/createLike";
+import deleteLike from "../controllers/posts/like/deleteLike";
 
 const router = express.Router();
 

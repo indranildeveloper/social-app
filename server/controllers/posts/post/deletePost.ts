@@ -1,8 +1,8 @@
 import { Response, RequestHandler, NextFunction } from "express";
 import asyncHandler from "express-async-handler";
-import Post from "../../models/Post";
-import CustomErrorHandler from "../../services/CustomErrorHandler";
-import IAuthUserRequest from "../../interfaces/AuthUser";
+import Post from "../../../models/Post";
+import CustomErrorHandler from "../../../services/CustomErrorHandler";
+import IAuthUserRequest from "../../../interfaces/AuthUser";
 
 /**
  * @description   GET user posts
