@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 export const metadata = {
   title: "Next Social",
@@ -12,8 +13,11 @@ interface IRootLayout {
 
 const RootLayout: FC<IRootLayout> = ({ children }: IRootLayout) => {
   return (
-    <html lang="en" data-theme="light">
-      <body>{children}</body>
+    <html lang="en" data-theme="winter">
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 };
