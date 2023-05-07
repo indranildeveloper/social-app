@@ -1,6 +1,6 @@
 {
   "name": "social-app-server",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "MERN Stack Fully Featured Social Media Application",
   "main": "server/dist/server.js",
   "repository": "https://github.com/indranildeveloper/social-app.git",
