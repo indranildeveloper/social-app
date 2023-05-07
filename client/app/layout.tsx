@@ -1,4 +1,5 @@
-import React from "react";
+import { FC, ReactNode } from "react";
+import { Poppins } from "next/font/google";
 import Providers from "./providers";
 
 export const metadata = {
@@ -6,10 +7,19 @@ export const metadata = {
   description: "Social Media App for developers.",
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const poppins = Poppins({
+  weight: "400",
+  subsets: ["devanagari"],
+});
+
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
-      <body>
+      <body className={poppins.className}>
         <Providers>{children}</Providers>
       </body>
     </html>

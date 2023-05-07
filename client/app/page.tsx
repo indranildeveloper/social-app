@@ -7,7 +7,7 @@ const Home: FC = (): JSX.Element => {
   return (
     <Container maxW="8xl">
       <Text fontSize="6xl">Social App</Text>
-      <Button colorScheme="blue">Click Me</Button>
+      <Button colorScheme="blue">Click Me!</Button>
     </Container>
   );
 };
