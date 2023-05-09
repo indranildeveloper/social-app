@@ -1,5 +1,7 @@
 import { FC, ReactNode } from "react";
 import { Poppins } from "next/font/google";
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer";
 import Providers from "./providers";
 
 export const metadata = {
@@ -20,7 +22,11 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
