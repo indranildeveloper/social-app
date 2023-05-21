@@ -30,6 +30,7 @@ const refresh: RequestHandler = asyncHandler(
       refreshToken = await RefreshToken.findOne({
         token: req.body.refreshToken,
       });
+
       if (!refreshToken) {
         return next(CustomErrorHandler.unAuthorized("Invalid refresh token!"));
       }
@@ -63,11 +64,19 @@ const refresh: RequestHandler = asyncHandler(
         REFRESH_TOKEN_SECRET
       );
 
+      // Delete existing Refresh Token in Database
+      await RefreshToken.deleteMany({
+        user: user._id,
+      });
+
       // Create Refresh Token in database
       await RefreshToken.create({
         user: user._id,
         token: generatedRefreshToken,
       });
+
+      // Set token in cookie
+      // --->
 
       res.json({
         accessToken: generatedAccessToken,

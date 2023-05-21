@@ -46,6 +46,10 @@ const login: RequestHandler = asyncHandler(
         "1y",
         REFRESH_TOKEN_SECRET
       );
+      // Delete existing Refresh Token in Database
+      await RefreshToken.deleteMany({
+        user: user._id,
+      });
 
       await RefreshToken.create({
         user: user._id,
