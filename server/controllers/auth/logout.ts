@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
 import asyncHandler from "express-async-handler";
+import CookieHandler from "../../services/CookieHandler";
 import RefreshToken from "../../models/RefreshToken";
 import logoutSchema from "../../validators/logoutSchema";
 
@@ -19,6 +20,8 @@ const logout: RequestHandler = asyncHandler(
 
     try {
       await RefreshToken.deleteMany({ user: req.body.userId });
+      CookieHandler.destroyCooKie(res, "accessToken");
+      CookieHandler.destroyCooKie(res, "refreshToken");
     } catch (error) {
       return next(new Error("Something went wrong in database!"));
     }

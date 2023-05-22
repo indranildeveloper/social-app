@@ -75,8 +75,7 @@ const refresh: RequestHandler = asyncHandler(
         token: generatedRefreshToken,
       });
 
-      // Set token in cookie
-      // --->
+      // TODO: Add access and refresh token in cookie
 
       res.json({
         accessToken: generatedAccessToken,

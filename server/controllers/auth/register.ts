@@ -6,6 +6,7 @@ import User from "../../models/User";
 import RefreshToken from "../../models/RefreshToken";
 import CustomErrorHandler from "../../services/CustomErrorHandler";
 import JwtHandler from "../../services/JwtHandler";
+import CookieHandler from "../../services/CookieHandler";
 import registerSchema from "../../validators/registerSchema";
 
 const { REFRESH_TOKEN_SECRET } = config;
@@ -61,6 +62,10 @@ const register: RequestHandler = asyncHandler(
         user: user._id,
         token: generatedRefreshToken,
       });
+
+      // Set accessToken and refreshToken in cookie
+      CookieHandler.setCookie(res, "accessToken", generatedAccessToken);
+      CookieHandler.setCookie(res, "refreshToken", generatedRefreshToken);
 
       res.status(201).json({
         _id: user._id,
