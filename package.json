@@ -4,7 +4,7 @@
   "description": "MERN Stack Fully Featured Social Media Application",
   "main": "server/dist/server.js",
   "repository": "https://github.com/indranildeveloper/social-app.git",
-  "author": "Indranil Halder <indranilhalder.dev@gmail.com>",
+  "author": "Indranil Halder<indranilhalder.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "node server/dist/server.js",
@@ -17,7 +17,8 @@
     "types:check": "tsc --noEmit --pretty",
     "prepare": "husky install",
     "client-install": "yarn --cwd ./client",
-    "client": "yarn --cwd ./client dev"
+    "client": "yarn --cwd ./client dev",
+    "dev": "npm-run-all --parallel server client"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -46,7 +47,6 @@
     "@types/node": "^20.1.0",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
-    "concurrently": "^8.0.1",
     "eslint": "8.40.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -66,6 +66,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "nodemon": "^2.0.21",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.8.7",
     "ts-node": "^10.9.1",
     "typescript": "*"
