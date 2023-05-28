@@ -15,8 +15,7 @@
     "airbnb",
     "airbnb/hooks",
     "plugin:prettier/recommended",
-    "plugin:react/jsx-runtime",
-    "next/core-web-vitals"
+    "plugin:react/jsx-runtime"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
@@ -39,13 +38,14 @@
       }
     }
   },
-  "plugins": ["react", "@typescript-eslint", "import"],
+  "plugins": ["react", "@typescript-eslint", "import", "react-refresh"],
   "rules": {
     "no-unused-vars": "off",
     "no-console": "off",
     "no-shadow": "off",
     "no-underscore-dangle": "off",
     "consistent-return": "off",
+    "react-refresh/only-export-components": "warn",
     "@typescript-eslint/no-unused-vars": "error",
     "import/no-cycle": "error",
     "import/extensions": "off",
